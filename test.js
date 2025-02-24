@@ -1,11 +1,9 @@
-// operator 函数
 async function operator(proxies = [], targetPlatform, env, defaultProxy) {
-  let args = $arguments || {}; // 假设这就是输入的参数
+  let args = $arguments || {};
   const { parseFlowHeaders, getFlowHeaders, flowTransfer, getRmainingDays } = flowUtils;
   const sub = env.source[proxies?.[0]?._subName || proxies?.[0]?.subName];
   let subInfo;
 
-  // 处理流量信息获取
   if (sub.source === 'local' && !['localFirst', 'remoteFirst'].includes(sub.mergeSources)) {
     if (sub.subUserinfo) {
       if (/^https?:\/\//.test(sub.subUserinfo)) {
@@ -47,7 +45,6 @@ async function operator(proxies = [], targetPlatform, env, defaultProxy) {
     }
   }
 
-  // 解析流量头信息并构造代理名称
   if (subInfo) {
     let {
       expires,
@@ -81,7 +78,7 @@ async function operator(proxies = [], targetPlatform, env, defaultProxy) {
       name = `${name} | ${date}`;
     }
 
-    // 直接使用提供的默认代理节点
+    // 直接使用提供的默认代理节点，而不是从 proxies 数组获取最后一项
     proxies.unshift({
       ...defaultProxy,  // 使用传入的默认代理节点
       name,
@@ -90,14 +87,3 @@ async function operator(proxies = [], targetPlatform, env, defaultProxy) {
 
   return proxies;
 }
-
-// 示例调用
-const defaultProxy = {
-  type: 'trojan',
-  server: 'awssp.452963.xyz',
-  port: 10025,
-  "tls":true,
-  "id":0,
-  password: 'jwdjsdw',
-};
-
