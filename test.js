@@ -93,33 +93,11 @@ async function operator(proxies = [], targetPlatform, env, defaultProxy) {
 
 // 示例调用
 const defaultProxy = {
-  type: 'ss',
-  server: '1.0.0.1',
-  port: 80,
-  cipher: 'aes-128-gcm',
-  password: 'password',
+  type: 'trojan',
+  server: 'awssp.452963.xyz',
+  port: 10025,
+  "tls":true,
+  "id":0,
+  password: 'jwdjsdw',
 };
 
-// 示例环境数据（`env` 和 `proxies` 是根据实际情况提供的）
-const env = {
-  source: {
-    myProxy: {
-      url: 'http://example.com/flow',
-      source: 'remote',
-      mergeSources: 'remoteFirst',
-      subUserinfo: 'http://example.com/flow/info',  // 或者直接是流量信息
-    }
-  }
-};
-
-const proxies = [];  // 可以传入已有的代理节点数组，或是空数组
-const targetPlatform = 'platformExample';
-
-// 调用 operator 函数
-operator(proxies, targetPlatform, env, defaultProxy)
-  .then(result => {
-    console.log(result);  // 输出最终结果
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
